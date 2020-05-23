@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BehaviorApp" mc:Ignorable="d" x:Class="BehaviorApp.MainPage">
+    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="#2F4258">
+
+
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="10">
+            <!-- Place new controls here -->
+            <Label Text="Welcome to Registration App" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry Placeholder="Email"
+               x:Name="username">
+                <Entry.Behaviors>
+                    <local:EmailValidation x:Name="codevalidator2" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="*" TextColor="Red" IsVisible="False">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference codevalidator2},Path=IsValid2}"
+                             Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference codevalidator2},Path=IsValid2}"
+                             Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+
+            <Entry Placeholder="Phone"
+               x:Name="phone">
+                <Entry.Behaviors>
+                    <local:NumericValidation x:Name="codevalidator" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="*" TextColor="Red" IsVisible="False">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference codevalidator},Path=IsValid}"
+                             Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference codevalidator},Path=IsValid}"
+                             Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+
+
+            <Entry x:Name="password" Placeholder="Password" IsPassword="true">
+                <Entry.Behaviors>
+                    <local:RequiredValidatorBehavior x:Name="passwordValidator"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="*" TextColor="Red" IsVisible="False">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference passwordValidator},Path=IsValid}"
+                             Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference passwordValidator},Path=IsValid}"
+                             Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <Entry x:Name="confirmPassword" Placeholder="Confirm Password" IsPassword="true">
+                <Entry.Behaviors>
+                    <local:ConfirmPasswordBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference password}}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="*" TextColor="Red" IsVisible="False">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference confirmPasswordBehavior},Path=IsValid}"
+                             Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference confirmPasswordBehavior},Path=IsValid}"
+                             Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <!--Submit Button Start-->
+            <Button Text="Submit" IsEnabled="False"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Clicked="Submit"
+                    BackgroundColor="#50C5D3">
+                <Button.Triggers>
+
+
+                    <!--Used for Multi Value to check-->
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+
+                            <BindingCondition Binding="{Binding Source={x:Reference codevalidator}, Path=IsValid}" Value="False" />
+                            <BindingCondition Binding="{Binding Source={x:Reference codevalidator2}, Path=IsValid2}" Value="False" />
+                            <BindingCondition Binding="{Binding Source={x:Reference passwordValidator}, Path=IsValid}" Value="False" />
+                            <BindingCondition Binding="{Binding Source={x:Reference confirmPasswordBehavior}, Path=IsValid}" Value="False" />
+                        </MultiTrigger.Conditions>
+
+                        <Setter Property="IsEnabled" Value="False" />
+                    </MultiTrigger>
+
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference codevalidator}, Path=IsValid}" Value="True" />
+                            <BindingCondition Binding="{Binding Source={x:Reference codevalidator2}, Path=IsValid2}" Value="True" />
+                            <BindingCondition Binding="{Binding Source={x:Reference passwordValidator}, Path=IsValid}" Value="True" />
+                            <BindingCondition Binding="{Binding Source={x:Reference confirmPasswordBehavior}, Path=IsValid}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True" />
+                    </MultiTrigger>
+                    <!--Used for Single Value to check-->
+                    <!--<DataTrigger TargetType="Button"
+                             Binding="{Binding Source={x:Reference codevalidator}, Path=IsValid}"
+                             Value="True"
+                             >
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding Source={x:Reference codevalidator2}, Path=IsValid2}"
+                             Value="True"
+                             >
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>-->
+                </Button.Triggers>
+            </Button>
+            <!--Submit Button End-->
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{F9C34A50-3DB0-4A6F-BC75-F339CB34D15C}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BehaviorApp/MainPage.xaml">
+    <Files>
+      <File FileName="BehaviorApp/MainPage.xaml" Line="16" Column="18" />
+      <File FileName="BehaviorApp/MainPage.xaml.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BehaviorApp" expanded="True">
+            <Node name="BehaviorApp" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BehaviorApp.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget." />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.BehaviorApp.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
